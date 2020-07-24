@@ -1,0 +1,195 @@
+%!TEX program = xelatex
+% 完整编译: xelatex -> bibtex -> xelatex -> xelatex
+\documentclass[lang=cn,12pt,a4paper]{elegantpaper}
+% used packages 
+\usepackage{graphicx}
+\usepackage{slashed}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ulem}
+\usepackage{CJKfntef}
+\usepackage{rotating} 
+\usepackage{float}
+\title{模型总结}
+
+
+\version{1.0}
+\date{\zhtoday}
+
+\begin{document}
+
+\maketitle
+
+
+
+
+
+
+\section{介绍}
+
+
+\section{模型}
+
+\subsection{博弈形式}
+
+
+
+\subsection{模型介绍}
+
+我们先考虑一个较为简单的对称博弈$G=(A,A^{\bf{T}})$，其中$A=(\mu_{ij}),\ i,j\in\{1,\cdots,n\}$为支付矩阵，$\mu_{ij}$表示类型$i$的个体遇到类型$j$的个体时的支付。假设有$N$个参与人，构成参与人集$\mathscr{N}=\{1,2,\cdots,N\}$。我们允许参与人采取混合策略，则每个策略对应$n$维单纯形$S_{n-1}$中的一个点$\mathbf{p}$，即策略集
+$$
+\mathscr{S}=S_n=\{\mathbf{p}=(p_1,\cdots p_n)\in \mathbb{R} ^n :p_i\ge0,\Sigma_{i=1}^n p_i=1\}
+$$
+$S_{n-1}$的角为标准$n$维单位向量$\left\{\boldsymbol{e}_{1}, \boldsymbol{e}_{2}, \ldots, \boldsymbol{e}_{n}\right\}$（满足对$\forall i\in\{1,2,\cdots n\}$，有$\boldsymbol{e}_{ij}=\delta _{ij}$），分别对应$n$个纯策略。$S_{n-1}$的内部对应着所有的完全混合策略；对于$S_{n-1}$的边缘包含的策略，其支撑集定义了对应基底张成的边界面，即$\operatorname{supp}(\mathbf{p})=\left\{i: 1 \leq i \leq n \text  ,\quad p_{i}>0\right\}$为$\{1,2, \cdots ,n\}$的真子集。
+
+类型为$\mathbf{p}$的个体遇到类型为$\mathbf{q}$的个体时的支付为$\mathbf{p}^{\bf{T}}A\mathbf{q}$\footnote{我们根据通常博弈论的假设，假设支付为线性函数，即使非线性，我们也可以采取局部线性化的方法来处理}。因此在此一般情形下，我们说一个策略$\mathbf{p}$为ESS，当且仅当该策略满足以下两条：
+
+\begin{enumerate}
+\item 纳什均衡条件：
+\begin{equation}
+\mathbf{p}^{\bf{T}}A\mathbf{p}\ge \mathbf{p}^{\bf{T}}A\mathbf{q}, \forall\mathbf{q}\in S_n
+\end{equation}
+\item 稳定性条件：
+\begin{equation}
+    \mathbf{p}^{\bf{T}}A\mathbf{p}=\mathbf{p}^{\bf{T}}A\mathbf{q},\mathbf{q}\ne \mathbf{p},\\
+\mathbf{p}^{\bf{T}}A\mathbf{q} > \mathbf{q}^{\bf{T}}A\mathbf{q}
+\end{equation}
+\end{enumerate}
+或者我们可采取另一种更为简便快捷的判定方法，根据(Hofbauer and Sigmund, 1998) 及(Cressman, 2003) ，一个策略$\mathbf{p}$为ESS，当且仅当该策略局部最优，即在$\mathbf{p}$的一个邻域内，满足
+\begin{equation}
+\mathbf{p}^{\bf{T}}A\mathbf{q}>\mathbf{q}^{\bf{T}}A\mathbf{q}, \text{for }\forall \mathbf{q}\ne\mathbf{p}
+\end{equation}
+
+若不考虑基因突变，演化博弈本质上就是常微分方程动力系统，于是我们可以根据动力系统的稳定性来描述产权的雏形。演化的动态可以通过在单纯形$S_{n-1}$上的微分方程来刻画，最主流的刻画来自于Taylor and Jonker (1978)提出的复制者动态(Replicator dynamics)。复制者动态为一组非线性、支付单调微分方程，不存在策略更新\footnote{$\sum {\dot {x_i}=0}$保证了单纯形结构为演化过程中的不变量。}。其中支付单调意味着$\frac{\dot{x}_{i}}{x_{i}}>\frac{\dot{x}_{j}}{x_{j}} \Longleftrightarrow u_{i}(\mathbf{x})>u_{j}(\mathbf{x})$，即高支付的类型比低支付的类型繁衍速度更快。
+
+
+
+
+\subsection{对称博弈}
+
+考虑对称博弈$G=(A,A^{\bf{T}})$，假设种群中所有个体可分为$n$类，丰度向量为$\mathbf{x}=(x_1,x_2,\cdots,x_n)$表示各类型的频次，满足$ \sum_{i=1}^nx_i=1$。对于个体$i$，其适存度函数为$f_{i}(\mathbf{x})=(A \mathbf{x})_{i}$。某类型个体数量的增加率取决于该类型个体的适存度同种群平均适存度的差，于是动态方程组为\footnote{此处我们采取复制者动态方程的Taylor形式，与之对应的还有Smith形式$\dot{{x}_{i}}=x_{i}\frac{\left((A \mathbf{x})_{i}-\mathbf{x}^{\bf{T}}  A \mathbf{x}\right)}{\mathbf{x}^{\bf{T}}  A \mathbf{x}}$，即演化的动力为相对适存度差}：
+\begin{equation}
+\dot{{x}_{i}}=x_{i}\left((A \mathbf{x})_{i}-\mathbf{x}^{\bf{T}}  A \mathbf{x}\right) \quad i=1, \ldots, n
+\end{equation}
+其中$\mathbf{x}^{\bf{T}}  A \mathbf{x} $为种群平均适存度，为此动力系统的\textit{势}，也是系统的李雅普诺夫函数。根据演化博弈论的无名氏定理，所有ESS都是该系统的吸引子，满足李雅普诺夫渐进稳定，反之不一定成立(Hofbauer and Sigmund, 1998 & 2003）。对于非线性动力系统，我们通常采取的办法是通过局部直化定理和Hartman-Grobman定理来对其做局部线性化，具体过程参见附录中求解吸引子的部分。
+
+对于遭遇战的鹰鸽二元博弈，本质上就是一个二维同质对称博弈，支付矩阵为
+\begin{equation}
+A=\begin{pmatrix}
+\frac{1-c}{2} & 1\\
+0 & \frac{1}{2}\\
+\end{pmatrix}
+\end{equation}
+其中战斗胜利这适存度增加1（标准化），战斗成本为$c$。结果在word版本里，即根据战争的性质，ESS或为纯H，或为混合。
+
+若存在报复者和欺软怕硬的类型，则……见word
+
+\subsection{非对称博弈}
+
+我们用非对称博弈来刻画那些处于不同地位的个体会有不同的策略集或不同的支付矩阵的情形。例如食物对于饥饿的个体比对吃饱的个体更有价值，战斗受伤风险对于强壮者更小，以及在位者和流浪者之间的天然不对称，在位者保具有先占优势，体现在哪怕自己是鸽，只要不被抢就仍占有资源。还比如在位者可能会拼死保护自己的资源，入侵者则往往虚晃一枪等不对称\footnote{我们这里并不排除反过来的情形，只是举个例子说明这种不对称的含义。}。因此对于非对称博弈，我们考察以下三种形式：1）双方地位不同导致策略集不同；2）双方策略集相同，但不同的地位有着不同的支付矩阵；3）地位的不同会影响策略集，或许也会影响支付。
+
+
+
+我们考察一般化的双支付矩阵(bimatrix)博弈$G=(A,B^{\bf{T}})$，其中$\dim(A)=n,\ \dim (B)=m$，即个体1有n种策略，个体2有m种策略。Selten(1980)证明了在非对称博弈下一个策略为ESS当且仅当它是严格纳什均衡策略。在非对称博弈的不可压缩性表明内点都不是严格的，因此不存在混合策略ESS，所有ESS只可能出现在两单纯形的积空间的边界$\operatorname{bd} (S_{n-1} \times S_{m-1})$，均为纯策略(Cressman, 2003)。此时的动态方程为：
+\begin{equation}
+\dot{{x}_{i}}=x_{i}\left((A \mathbf{x})_{i}-\mathbf{x}^{\bf{T}}  A \mathbf{x}\right) \quad i=1, \ldots, n\\
+\dot{{y}_{j}}=y_{j}\left((B \mathbf{y})_{j}-\mathbf{y}^{\bf{T}}  B \mathbf{y}\right) \quad j=1, \ldots, m
+\end{equation}
+积空间$ (S_{n-1} \times S_{m-1})$保持不变。支付矩阵和结果见word，原先对称时的ESS退化为两个纯策略均衡，即产权和反产权，其中的反产权能够解释自然界中某些蝴蝶种群的模式。
+
+若存在报复者和欺软怕硬的类型，则……见word。
+
+下文中出现的公式，如不加声明，我们总默认$\mathbf{x},\mathbf{y}$为个体采取的策略，$x_i,y_i$为频率，$A,B$为支付矩阵。
+
+\subsubsection{角色博弈}
+
+
+
+\subsubsection{多种群}
+
+此时ESS未必是稳健的，考虑两个同质种群，分别为$\mathbf{p}$和$\mathbf{q}$策略选手，分别被一小部分$\mathbf{x},\mathbf{y}$入侵。x,y分别表示入侵种族的频率，动态方程为
+\begin{equation}
+\begin{aligned}
+\dot{x} &=x(1-x)(b-(a+b) y) \\
+\dot{y} &=y(1-y)(d-(c+d) x)
+\end{aligned}
+\end{equation}
+其中\((a,b,c,d)=\)。必须同时满足$\mathbf{p}$不被$\mathbf{x}$侵害同时$\mathbf{q}$不被$\mathbf{y}$侵害的策略才是ESS。
+
+\subsection{最优反应动态}
+
+我们允许种群中的个体有偶尔的理性行为，我们用最优反应动态模型来刻画这一情况，即每一期会有小部分个体会根据最优反应函数来更新自己的策略，动态方程为
+\begin{equation}
+\dot{\mathbf{x}}=\mathrm{BR}(\mathbf{x})-\mathbf{x}
+\end{equation}
+
+通常解为线性轨道……相图为沙普利三角。任何复制者动态的内部ESS都是最优反应动态的全局渐进稳定点。
+
+\subsection{有限理性动态}
+
+对于低等生物，其个体往往不具备完全理性，因此我们赋予其偶尔的有限理性。我们用Fudenberg and Levine(1998)提出的Logit动态来刻画有限理性下的最优反应动态，动态方程为
+\begin{equation}
+\dot{{x}}_{i}=\frac{\exp \left[u_{i}(\mathbf{x}) / K\right]}{\sum_{j} \exp \left[u_{j}(\mathbf{x}) / K\right]}-{x}_i
+\end{equation}
+其中噪音参数$K$来衡量有限理性的程度，当$K\rightarrow0$时，退化到完全理性。
+
+\subsection{适应性动态}
+
+
+
+
+
+
+\section{模拟}
+
+\subsection{Agent-Based Model}
+
+之前的动态都是宏观层面的，从Agent-based开始涉及微观层面。Agent-Based动态往往由一个策略更新规则定义，这些规则可以用来模拟基因层面的演化过程，以及人类学习过程中的有限理性，两者都允许微小错误的存在。策略更新规则多种多样。
+
+我们首先考虑一个同质参与者组成的系统，所有参与者构成一个格点架构（或图），处在x格点处的参与人采取某个纯策略，即从n个n维单位向量中选其一
+\begin{equation}
+\mathbf{s}_{x}=\left(\begin{array}{c}
+1 \\
+\vdots \\
+0
+\end{array}\right), \ldots,\left(\begin{array}{c}
+0 \\
+\vdots \\
+1
+\end{array}\right)
+\end{equation}
+其支付为
+\begin{equation}
+U_{x}=\sum_{y \in\mathcal{O}_{x}} \mathbf{s}_{x} ^{\bf{T}} \mathbf{A} \mathbf{s}_{y}
+\end{equation}
+其中$\mathcal{O}_x$是该参与人的“邻居”，由图的构架决定\footnote{这就是负能量状态下的（热力学）易辛模型，AB模型类似于这种简单的物理模型}。在此基础上，我们还可以继续按照更新策略的不同来对这种空间模型进行进一步的细分，这种细分有着明确的经济学和生物学上的意义。
+
+\subsubsection{同时更新策略}
+
+在空间模型中，是否同时更新策略对结果的影响很大。每一期（离散），所有参与者同时按照既定规则来更新自己的策略(Abramson and Kuperman, 2001)，同时更新策略模型多被用在元胞自动机中，因此此种情况我们可用“平均场”元胞自动机来分析（晓齐），个体之间的战斗依照War of attrition规则进行。元胞自动机的结果通常分为四类，每一类可分别对应一种演化结果和产权特征。
+
+进一步，我们可引入参与人的异质性和更新规则的随机性，这对于结果的影响可以产生一系列有建设性的结论。
+
+\subsubsection{随机顺序更新策略}
+
+这是一个非同时更新策略模型的最基本的特例。许多时候，种群中的每个个体更新策略的时间独立于其他个体，简化处理为每一期随机选出一个个体，只允许该个体更新策略。或者采取类似于北京市摇号系统规则的更公平的“泊松钟”模式，即久未中签的个体下一期中签的概率增加。
+
+\subsubsection{微观更新规则}
+
+更新策略的规则的核心参数之一为**个体转变率**$w(s\rightarrow s^\prime)$，表示在获得更新策略机会时，某个体从策略$s$更新为$s^\prime$的条件概率。假设每期随机允许一个个体更新策略，则任意个体必须满足$\sum_{s^\prime} w(s\rightarrow s^\prime)=1/n$。规则往往包括复制、模仿和学习。
+
+\subsubsection{最优反应策略}
+
+\subsubsection{胜者保持策略、败者转变策略}
+
+若参与者的信息极度缺乏，以至于其余参与者的支付不可观察，此时参与者可采取这种策略，即胜者维持当前策略，负者随机改变策略。输赢的标准为前一期的支付是否高过某一心理预期值$a$（期望水平），这一规则在重复博弈中的应用即为著名的“巴甫洛夫规则”。
+
+
+
+
+
+
+
+\end{document}
