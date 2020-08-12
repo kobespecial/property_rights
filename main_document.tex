@@ -1,0 +1,314 @@
+%!TEX program = xelatex
+% 完整编译: xelatex -> bibtex -> xelatex -> xelatex
+\documentclass[lang=cn,12pt,a4paper]{elegantpaper}
+% used packages 
+\usepackage{graphicx}
+\usepackage{slashed}
+\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{amstext}
+%\usepackage{hyperref}
+\usepackage[notref,notcite]{showkeys}
+%\usepackage{cancel}
+\usepackage{ulem}
+%\usepackage{CJKfntef}
+%\usepackage{rotating}
+\usepackage{float}
+%\usepackage{pdflscape}
+%\usepackage[affil-it]{authblk}
+%\usepackage{url}
+%\usepackage{cite}
+%\usepackage{subcaption}
+
+\title{人类产权的诞生}
+\author{xxxxx}
+
+
+\version{1.1}
+\date{\zhtoday}
+
+\begin{document}
+
+\maketitle
+
+\section{产权形成的路径}
+\subsection{集体生产、分享食物、个体消费}
+
+生物的防御本性导致产权的产生，抢夺者和守卫者天然不对称，守卫者会“拼死”保护自己仅有的食物。
+
+
+
+\subsection{个体异质化}
+\subsection{声誉效应}
+\subsection{道德惩罚}
+\subsection{族群之间的争夺}
+\subsection{饲养}
+
+\section{模型}
+
+\subsection{博弈形式}
+
+根据演化博弈论的观点，动物和人不一样，动物往往指具有有限理性。多数情况下，动物在选择行为时不具备思考能力，而是由基因决定。物种演化时，某类型物种的生存前景取决于其适存度(fitness)，适存度和其繁殖成功率息息相关。适存度由博弈过程中该个体得到的支付来描述，这里的类型（表现型）可看作该生物采取的策略。之所以被称为策略，是因为它是在研究动物行为中产生的，策略一词完全可以被“表现型”所代替。生物的任何一种表现型都可以被称为“策略”。
+
+我们按照逻辑递进的顺序，从以下几种博弈形式来对产权的产生进行剖析。首先我们从最基本的对称博弈谈起，即博弈双方完全的地位相同。这种博弈如同现实世界中的同一物种中两个体的遭遇战，双方完全平等。然后我们会讨论非对称博弈，即双方地位不同，比如在位者和入侵者地位上的差异导致的策略集和收益的不同。然后我们会讨论多种群的情况，多种群显然也是非对称博弈的一种，但是由于来自一个种群的入侵者只会入侵另一种群，故和之前的非对称博弈有着本质的区别。
+
+以上博弈均为个体无意识的，个体没有策略的选择，即不存在\textbf{策略更新}，也没有所谓的博弈过程，只是简单的个体之间的遭遇，结果完全取决于双方的类型。对于有意识的个体，我们采取Brown(1951)提出的虚拟行动(fictitious play)方法，对于完全理性的个体，我们认为其使用最优反应策略。对于具有有限理性的物种，我们认为其使用有限最优反应策略(Fudenberg and Levine, 1998)。
+
+我们还允许个体具有学习能力，存在\textbf{策略更新}，其中包括了像高适存度个体学习，包括挑软柿子捏（信号效应）。我们还引入多期博弈中的适应性策略、竞争与合作，参与人在任何一期的策略取决于前一期对手的行为，并在此中引入道德惩罚\footnote{如需要，我们还可以分析如下博弈形式
+\begin{enumerate}
+\item 模仿：每一期随机选出一名参与者，赋予其以一定概率模仿另一个随机参与人的策略的权力
+\item 调整：整个种群应该朝更好的状态移动
+\item 高维度博弈：每个个体的策略集包含$n>4$种策略
+\end{enumerate}}。
+
+
+
+
+\subsection{模型介绍}
+
+演化博弈论最初为博弈论分支，对纳什均衡进行了精炼，精炼结果为演化稳定策略(ESS)，即稀有变异下的稳定性，表现为不被偶然的变异物种所侵害的性质。某种策略是否演化稳定？根据Maynard Smith and Price (1973)，演化稳定表现为不被偶然的变异物种所侵害，即一个演化稳定策略ESS，如果整个种群中每个个体都采取这个策略，那么在自然选择下，不存在任何一种突变可以侵犯到这个种群，即不存在占优突变。只有演化稳定的类型才能在长期演化中存活下来。显然ESS是纳什均衡的一个精炼均衡。
+
+模型采取平均场(Mean field)博弈模型（自洽场）来对大且复杂的演化模型简化，简化的方法为近似处理：对某个独立的小个体，所有其他个体对它产生的作用可以用一个平均的量给出，如此，简化后的模型成为一个单体问题。这种简化允许我们可以只考虑双方博弈(two-player game)，即两个体的可行策略集以及对应的支付矩阵和策略更新规则。假设社群有$N$个个体，构成参与人集$\mathscr{N}=\{1,2,\cdots,N\}$。为保证平均场理论的适用性，我们要求\(N\)足够大。我们允许参与人既可以采取纯策略，也可采取混合策略，则每个策略对应$n$维单纯形$S_{n-1}$中的一个点$\mathbf{p}$，即策略集
+\begin{equation}
+    \mathscr{S}=S_{n-1}=\{\mathbf{p}=(p_1,\cdots p_n)\in \mathbb{R} ^n :p_i\ge0,\Sigma_{i=1}^n p_i=1\}
+\end{equation}
+博弈可以是对称的，也可以是非对称的。我们先考虑一个较为简单的对称博弈$G=(A,A^{\bf{T}})$，其中$A=(\mu_{ij}),\ i,j\in\{1,\cdots,n\}$为支付矩阵，$\mu_{ij}$表示类型$i$的个体遇到类型$j$的个体时的支付
+\footnote{任何一个支付矩阵
+\(\mathrm{A}=
+\begin{pmatrix}
+    a&b\\c&d
+\end{pmatrix}\)都可纳什等价为
+\(\mathrm{A'}=
+\begin{pmatrix}
+    \cos \phi&0\\0&\sin \phi
+\end{pmatrix}\)，
+其中\(\tan \phi=\frac{d-b}{a-c}\)
+}。
+
+单纯形$S_{n-1}$的角对应了$n$个纯策略，它们是标准$n$维单位向量$\left\{\boldsymbol{e}_{1}, \boldsymbol{e}_{2}, \ldots, \boldsymbol{e}_{n}\right\}$，满足对$\forall i\in\{1,2,\cdots n\}$，有$\boldsymbol{e}_{ij}=\delta _{ij}$。$S_{n-1}$的内部对应着所有的完全混合策略；对于$S_{n-1}$的边缘包含的策略，其支撑集定义了对应基底张成的边界面，即$\operatorname{supp}(\mathbf{p})=\left\{i: 1 \leq i \leq n \text,\ p_{i}>0\right\}$为$\{1,2, \cdots ,n\}$的真子集。类型为$\mathbf{p}$的个体遇到类型为$\mathbf{q}$的个体时的支付为$\mathbf{p}^{\bf{T}}A\mathbf{q}$。因此在此一般情形下\footnote{我们根据通常博弈论的假设，假设支付为线性函数，即使非线性，我们也可以采取局部线性化的方法来处理}，我们说一个策略$\mathbf{p}$为ESS，当且仅当该策略满足以下两条：
+
+\begin{enumerate}
+\item 纳什均衡条件：
+\begin{equation}
+\mathbf{p}^{\bf{T}}A\mathbf{p}\ge \mathbf{p}^{\bf{T}}A\mathbf{q}, \forall\mathbf{q}\in S_n
+\end{equation}
+\item 稳定性条件：
+\begin{equation}
+    \mathbf{p}^{\bf{T}}A\mathbf{p}=\mathbf{p}^{\bf{T}}A\mathbf{q},\mathbf{q}\ne \mathbf{p},\\
+\mathbf{p}^{\bf{T}}A\mathbf{q} > \mathbf{q}^{\bf{T}}A\mathbf{q}
+\end{equation}
+\end{enumerate}
+或者我们可采取另一种更为简便快捷的判定方法，根据(Hofbauer and Sigmund, 1998)，一个策略$\mathbf{p}$为ESS，当且仅当该策略局部最优，即在$\mathbf{p}$的一个邻域内，满足
+\begin{equation}
+\mathbf{p}^{\bf{T}}A\mathbf{q}>\mathbf{q}^{\bf{T}}A\mathbf{q}, \text{for }\forall \mathbf{q}\ne\mathbf{p}
+\end{equation}
+
+Maynard Smith提出的ESS为静态视角下的演化博弈，除此之外，演化博弈现在已被越来越多地认为是一种自制动态系统，可由常微分方程组刻画的动力系统来描述，于是我们可将分析产权转变为分析动力系统的稳定性。演化的动态可以通过在单纯形$S_{n-1}$上的微分方程来刻画，个体的行为规则就是系统的动力规则。
+
+
+\subsection{无理性模型}
+
+在描述演化博弈的动力系统中，最直接最常用的动态系统为Taylor and Jonker(1978)提出的复制者动态(Replicator dynamics)，直接将繁殖成功率和适存度直接相关。复制者动态为一组非线性、支付单调微分方程，不存在策略更新\footnote{$\sum {\dot {x_i}=0}$保证了单纯形结构为演化过程中的不变量。}。其中支付单调意味着$\frac{\dot{x}_{i}}{x_{i}}>\frac{\dot{x}_{j}}{x_{j}} \iff u_{i}(\mathbf{x})>u_{j}(\mathbf{x})$，即高支付的类型比低支付的类型繁衍速度更快。
+
+\subsubsection{对称博弈}
+
+在对称博弈中，博弈双方地位相同。考虑对称博弈$G=(A,A^{\bf{T}})$，假设种群中所有个体可分为$n$类，丰度向量为$\mathbf{x}=(x_1,x_2,\cdots,x_n)$表示各类型的频次，满足$ \sum_{i=1}^nx_i=1$。对于个体$i$，其适存度函数为$f_{i}(\mathbf{x})=(A \mathbf{x})_{i}$。某类型个体数量的增加率取决于该类型个体的适存度同种群平均适存度的差，于是动态方程组为\footnote{此处我们采取较为简单和常用的复制者动态方程的Taylor形式，与之对应的还有Smith形式$\dot{{x}_{i}}=x_{i}\frac{\left((A \mathbf{x})_{i}-\mathbf{x}^{\bf{T}}  A \mathbf{x}\right)}{\mathbf{x}^{\bf{T}}  A \mathbf{x}}$，即演化的动力为相对适存度差}：
+\begin{equation}
+\dot{{x}_{i}}=x_{i}\left((A \mathbf{x})_{i}-\mathbf{x}^{\bf{T}}  A \mathbf{x}\right) \quad i=1, \ldots, n
+\end{equation}
+其中$\mathbf{x}^{\bf{T}}  A \mathbf{x}$为种群平均适存度，为此动力系统的\textbf{势}，也是系统的\textbf{李雅普诺夫函数}。根据演化博弈论的无名氏定理，所有ESS都是该系统的吸引子，满足李雅普诺夫渐进稳定，反之不一定成立(Hofbauer and Sigmund, 2003）。对于非线性动力系统，我们通常采取的办法是通过局部直化定理和Hartman-Grobman定理来对其做局部线性化，具体过程参见附录中求解吸引子的部分。
+
+对于遭遇战的鹰鸽二元博弈，本质上就是一个二维同质对称博弈，支付矩阵为
+\begin{equation}
+A=\begin{pmatrix}
+\frac{1-c}{2} & 1\\
+0 & \frac{1}{2}\\
+\end{pmatrix}
+\end{equation}
+其中战斗胜利这适存度增加1（标准化），战斗成本为$c$。结果在word版本里，即根据战争的性质，ESS或为纯H，或为混合。
+
+\subsubsection{非对称博弈}
+
+我们用非对称博弈来刻画那些处于不同地位的个体会有不同的策略集或不同的支付矩阵的情形。例如食物对于饥饿的个体比对吃饱的个体更有价值，战斗受伤风险对于强壮者更小，以及在位者和流浪者之间的天然不对称，在位者保具有先占优势，体现在哪怕自己是鸽，只要不被抢就仍占有资源。还比如在位者可能会拼死保护自己的资源，入侵者则往往虚晃一枪等不对称\footnote{我们这里并不排除反过来的情形，只是举个例子说明这种不对称的含义。}。因此对于非对称博弈，我们考察以下三种形式：1）双方地位不同导致策略集不同；2）双方策略集相同，但不同的地位有着不同的支付矩阵；3）地位的不同会影响策略集，或许也会影响支付。
+
+对于非对称博弈，我们通常用双支付矩阵(bi-matrix)来描述。我们考察一般化的双支付矩阵(bi-matrix)博弈$G=(A,B^{\bf{T}})$，其中$\dim(A)=n,\ \dim (B)=m$，即个体1有n种策略，个体2有m种策略。Selten(1980)证明了在非对称博弈下一个策略为ESS当且仅当它是严格纳什均衡策略。非对称博弈的不可压缩性表明内点都不是严格的，因此不存在混合策略ESS，所有ESS只可能出现在两单纯形的积空间的边界$\operatorname{bd} (S_{n-1} \times S_{m-1})$，均为纯策略(Cressman, 2003)。此时的动态方程为：
+\begin{align}
+&\dot{{x}_{i}}=x_{i}\left((A \mathbf{x})_{i}-\mathbf{x}^{\bf{T}}  A \mathbf{x}\right) \quad i=1, \ldots, n\\
+&\dot{{y}_{j}}=y_{j}\left((B \mathbf{y})_{j}-\mathbf{y}^{\bf{T}}  B \mathbf{y}\right) \quad j=1, \ldots, m
+\end{align}
+积空间$ (S_{n-1} \times S_{m-1})$保持不变。支付矩阵和结果见word，原先对称时的ESS退化为两个纯策略均衡，即产权和反产权，其中的反产权能够解释自然界中某些鸟类和蝴蝶种群的模式。
+
+（若存在报复者和欺软怕硬的类型，则……见word。）
+
+下文中出现的公式，如不加声明，我们总默认$\mathbf{x},\mathbf{y}$为个体采取的策略，$x_i,y_i$为频率，$A,B$为支付矩阵。
+
+
+
+
+\subsubsection{角色博弈}
+
+个体在博弈过程中会频繁改变自己的角色，任意个体作为进攻者的概率为\(p\)，作为防守者的概率为\(1-p\)。
+
+\subsubsection{多种群*}
+
+此时ESS未必是稳健的，考虑两个同质种群，分别为$\mathbf{p}$和$\mathbf{q}$策略选手，分别被一小部分$\mathbf{x},\mathbf{y}$入侵。x,y分别表示入侵种族的频率，动态方程为
+\begin{equation}
+\begin{aligned}
+\dot{x} &=x(1-x)(b-(a+b) y) \\
+\dot{y} &=y(1-y)(d-(c+d) x)
+\end{aligned}
+\end{equation}
+其中\((a,b,c,d)=xxx\)。必须同时满足$\mathbf{p}$不被$\mathbf{x}$侵害同时$\mathbf{q}$不被$\mathbf{y}$侵害的策略才是ESS。
+
+\subsection{有限理性模型}
+
+按照理性由低到高，可分为以下几种情况。
+
+\subsubsection{最优反应动态}
+
+我们允许种群中的个体有偶尔的理性行为，我们用最优反应动态模型来刻画这一情况，即每一期会有小部分个体会根据最优反应函数来更新自己的策略，动态方程为
+\begin{equation}
+\dot{\mathbf{x}}=\mathrm{BR}(\mathbf{x})-\mathbf{x}
+\end{equation}
+
+对于纯BR策略\(\beta\)，此动力系统的解为
+\begin{equation}
+    \boldsymbol{\rho}(t)=\left(1-e^{-t}\right) \boldsymbol{\beta}+e^{-t} \boldsymbol{\rho}_{0}
+\end{equation}
+可以看出，BR动态和复制者动态很不一样，BR动态通常解为线性轨道……相图为沙普利三角。任何复制者动态的内部ESS都是最优反应动态的全局渐进稳定点。
+
+\subsubsection{有限理性动态}
+
+对于低等生物，其个体往往不具备完全理性，因此我们赋予其偶尔的有限理性。我们用Fudenberg and Levine(1998)提出的Logit动态来刻画有限理性下的最优反应动态，动态方程为
+\begin{equation}
+\dot{{x}}_{i}=\frac{\exp \left[u_{i}(\mathbf{x}) / K\right]}{\sum_{j} \exp \left[u_{j}(\mathbf{x}) / K\right]}-{x}_i
+\end{equation}
+其中噪音参数$K$来衡量有限理性的程度，当$K\rightarrow0$时，退化到完全理性。理性程度\(K\)的不同会形成Hopf bifurcation。
+
+\subsubsection{适应性动态}
+
+类型为\(s\)的个体在种群中的占比为：
+\begin{equation}
+    \dot{s}=\left.\frac{\partial u(q, s)}{\partial q}\right|_{q=s}
+\end{equation}
+此过程通常不会有ESS，而且可能导致适存度最小化。
+
+\subsection{鹰鸽重复囚徒困境博弈}
+
+首先给出支付矩阵：
+\begin{equation}
+    \mathrm{A}=
+    \begin{pmatrix}
+        P&T\\S&R
+    \end{pmatrix}
+\end{equation}
+
+
+
+我们知道，传统囚徒困境重复博弈中，无限期博弈中以牙还牙策略是最优策略；有限期博弈中，以牙还牙策略和永远不合作是ESS。对于无完全思考能力的个体，我们仍可以去研究其策略收到前一期对手策略的影响，即便个体没有足够的思考能力去成功选择以牙还牙策略。通常，个体类型可分为如下几种，或者说个体可采取的行动有如下几种可能。
+
+\subsubsection{随即反应策略}
+
+个体当期的策略概率依存于前一期对手的策略，我们用三个参数\(s=(u,p,q)\)来刻画随机反应策略(stochastic reactive strategies)，其中对于某个体，\(u\)表示其最开始抢夺的概率，\(p,q\)分别为前一期对手不抢和抢时，当期该个体不抢的条件概率。若我们记某类型为\(s=(u,p,q)\)的个体遇到类型为\(s'=(u',p',q')\)的个体时的支付为\(A(s,s')\)，则演化方程为
+\begin{equation}
+    \dot{p}=\left.\frac{\partial A\left(s, s^{\prime}\right)}{\partial p}\right|_{s^{\prime}=s}, \quad \dot{q}=\left.\frac{\partial A\left(s, s^{\prime}\right)}{\partial q}\right|_{s^{\prime}=s}
+\end{equation}
+
+此时个体的最优解就是\(p=1\)，即大家都不抢，形成产权。
+
+\subsubsection{Mean field}
+
+每一个，每个个体和有限个其他个体遭遇，种群中有着固定的鹰鸽比例，鸽为\(\rho\)，鹰为\(1-\rho\)。个体无记忆。动态方程为
+\begin{equation}
+    \dot{\rho}=\rho(1-\rho)\left(U_{D}-U_{H}\right)
+\end{equation}
+其中\(U_D,U_H\)分别是鸽、鹰的期望效用。
+
+此时，\(\rho\)应满足Helbing(1998)提出的近似均值方程，略去过程，可知若鹰效用高，即\(U_h>U_D\)，则纳什均衡为\(\rho=0\)，即群体最终都变为鹰。
+
+\subsubsection{更为贴近实际的Moran过程}
+
+在一个个体数为\(N\)的种群中，D类型个体数为\(i\)，H类型个体数为\(N-i\)。每一期任一个体依概率产生一个继承其基因的后代，产生后代的概率和其当期适存度成正比。刚出生的个体会随机替换掉一个其他个体来保持总数不变。略去过程看结果为：该系统的吸引子为\(i=0\)和\(i=N\)，即种群最终会趋于某单一类型。
+
+\subsection{空间演化博弈}
+\subsection{Agent-Based Model}
+
+之前的动态都是宏观层面的，从Agent-based开始涉及微观层面。Agent-Based动态往往由一个策略更新规则定义，这些规则可以用来模拟基因层面的演化过程，以及人类学习过程中的有限理性，两者都允许微小错误的存在。策略更新规则多种多样。
+
+我们首先考虑一个同质参与者组成的系统，所有参与者构成一个格点架构（或图），处在x格点处的参与人采取某个纯策略，即从$n$个$n$维单位向量中选其一
+\begin{equation}
+\mathbf{s}_{x}=\left(\begin{array}{c}
+1 \\
+\vdots \\
+0
+\end{array}\right), \ldots,\left(\begin{array}{c}
+0 \\
+\vdots \\
+1
+\end{array}\right)
+\end{equation}
+其支付为
+\begin{equation}
+U_{x}=\sum_{y \in\mathcal{O}_{x}} \mathbf{s}_{x} ^{\bf{T}} \mathbf{A} \mathbf{s}_{y}
+\end{equation}
+其中$\mathcal{O}_x$是该参与人的“邻居”，由图的构架决定\footnote{这就是负能量状态下的（热力学）易辛模型，AB模型类似于这种简单的物理模型}。在此基础上，我们还可以继续按照更新策略的不同来对这种空间模型进行进一步的细分，这种细分有着明确的经济学和生物学上的意义。
+
+\subsubsection{同时更新策略}
+
+在空间模型中，是否同时更新策略对结果的影响很大。每一期（离散），所有参与者同时按照既定规则来更新自己的策略(Abramson and Kuperman, 2001)，同时更新策略模型多被用在元胞自动机中，因此此种情况我们可用“平均场”元胞自动机来分析，个体之间的战斗依照War of attrition规则进行。元胞自动机的结果通常分为四类，每一类可分别对应一种演化结果和产权特征。
+
+进一步，我们可引入参与人的异质性和更新规则的随机性，这对于结果的影响可以产生一系列有建设性的结论。
+
+\subsubsection{随机顺序更新策略}
+
+这是一个非同时更新策略模型的最基本的特例。许多时候，种群中的每个个体更新策略的时间独立于其他个体，简化处理为每一期随机选出一个个体，只允许该个体更新策略。或者采取类似于北京市摇号系统规则的更公平的“泊松钟”模式，即久未中签的个体下一期中签的概率增加。
+
+\subsubsection{微观更新规则}
+
+更新策略的规则的核心参数之一为个体转变率$w(s\rightarrow s^\prime)$，表示在获得更新策略机会时，某个体从策略$s$更新为$s^\prime$的条件概率。假设每期随机允许一个个体更新策略，则任意个体必须满足$\sum_{s^\prime} w(s\rightarrow s^\prime)=1/n$。规则往往包括复制、模仿和学习。
+
+\subsubsection{最优反应策略}
+
+\subsubsection{胜者保持策略、败者转变策略}
+
+若参与者的信息极度缺乏，以至于其余参与者的支付不可观察，此时参与者可采取这种策略，即胜者维持当前策略，负者随机改变策略。输赢的标准为前一期的支付是否高过某一心理预期值$a$（期望水平），这一规则在重复博弈中的应用即为著名的“巴甫洛夫规则”。
+
+\subsection{微观到宏观}
+
+每一期最多只有一名个体更新策略，从策略\(i\)更新到策略\(j\)，导致策略\(i\)的个体数量减少\(1\)，\(j\)策略的个体数量增加\(1\)，记作\(\boldsymbol{n}^{(ij)}\)，于是形成一个\(Q\)类型(无记忆)马尔可夫过程，其中\(Q\)为种群中存在的不同类型个数。用\(n_i,i=1,2,\cdots ,Q\)表示第\(i\)类型的个体数量。策略集为
+\begin{equation}
+    \boldsymbol{n}=\left\{ n_1,n_2,\cdots ,n_Q\right\},\quad \sum_i n_i=N
+\end{equation}
+策略集的（含时）策略密度函数满足动态方程
+\begin{equation}
+    \frac{\mathrm{d} P(\boldsymbol{n}, t)}{\mathrm{d} t}=\sum_{\boldsymbol{n}^{\prime}}\left[P\left(\boldsymbol{n}^{\prime}, t\right) W\left(\boldsymbol{n}^{\prime} \rightarrow \boldsymbol{n}\right)-P(\boldsymbol{n}, t) W\left(\boldsymbol{n} \rightarrow \boldsymbol{n}^{\prime}\right)\right]
+\end{equation}
+其中两个\(W\)分别代表策略集的“流入”和“流出”更新规则。可由下式决定：
+\begin{equation}
+    W\left(\boldsymbol{n} \rightarrow \boldsymbol{n}^{\prime}\right)=\sum_{j, k} n_{j} w(j \rightarrow k ; \boldsymbol{n}) \delta_{\boldsymbol{n}^{\prime}, \boldsymbol{n}^{(j k)}}
+\end{equation}
+也可得到复制者动态方程。
+
+\subsection{势博弈(potential game)和易辛模型(Ising Model)}
+
+在一场博弈中，如果每个参与者对于自己目标的改变或者说策略的选取，都可以映射到一个全局唯一函数中去，这个函数就叫做\textbf{势函数}，这个博弈就是势博弈。每个人对自己的策略的每次改变一定是单调的（因为总是使自己的效用更高），那么如果每个人的效用函数的改变如果能映射到一个势函数里，就会使这个势函数也是单调的。如果这个势函数是单调的，那么每次对它的单调更改总会有结束的时候（直到每个人都是最满意，没有人可以更改为止）。那么这个时候就是纯策略纳什均衡了，因此势博弈一定存在纯策略纳什均衡解。
+
+\subsection{社会网络图模型}
+
+用节点和边组成的图模型来描绘社群中个体的互动关系，不同的拓扑性质反映了不同特点的社群。在我们的框架中，博弈过程和学习过程都基于一个相同的网络结构。我们要研究产权，故主要使用进化网络（Evolving networks），假设不存在策略更新，对任意个体，每一轮其类型保持不变，但会遇到不同的对象。这种结构会改变博弈结果(Vainstein et al. 2007)
+
+
+
+
+\section{结论}
+
+\section{附录}
+
+
+
+
+
+
+
+
+
+\end{document}
